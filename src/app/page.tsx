@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { FaGithubSquare } from "react-icons/fa";
+
 
 const Homepage = () => {
   return (
@@ -186,53 +188,239 @@ const Homepage = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-3 mb-4">
+          {/* Developer Spotlight Section */}
+          <div className="text-center mb-12">
+            <div className="inline-block p-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-6">
+              <div className="bg-gray-900 rounded-full p-8">
+                <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 p-1">
+                  <Image
+                    src="https://github.com/arpondark.png"
+                    alt="MD Shazan Mahmud Arpon"
+                    width={88}
+                    height={88}
+                    className="rounded-full object-cover"
+                    priority
+                  />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
+                  MD SHAZAN MAHMUD ARPON
+                </h2>
+                <p className="text-xl text-gray-300 mb-4">Full Stack Developer & Software Engineer</p>
+                <p className="text-gray-400 max-w-2xl mx-auto">
+                  Passionate about creating innovative digital solutions that transform educational experiences. 
+                  Specializing in modern web technologies and scalable applications.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Main Footer Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-12">
+            {/* About Section */}
+            <div className="lg:col-span-2">
+              <div className="flex items-center space-x-3 mb-6">
                 <Image 
                   src="/logo.png" 
                   alt="School Logo" 
-                  width={32} 
-                  height={32}
+                  width={40} 
+                  height={40}
                   className="rounded-full"
                 />
-                <h3 className="text-xl font-bold">SchoolHub</h3>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  SchoolHub
+                </h3>
               </div>
-              <p className="text-gray-400">
-                Modern school management system for the digital age.
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                A comprehensive school management system designed to streamline educational operations. 
+                Built with modern technologies to provide seamless user experience for administrators, 
+                teachers, students, and parents.
               </p>
+              <div className="flex space-x-4">
+                <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-lg">
+                  <span className="text-sm font-semibold">Next.js 14</span>
+                </div>
+                <div className="bg-gradient-to-r from-green-600 to-blue-600 p-3 rounded-lg">
+                  <span className="text-sm font-semibold">TypeScript</span>
+                </div>
+                <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-3 rounded-lg">
+                  <span className="text-sm font-semibold">Tailwind CSS</span>
+                </div>
+              </div>
             </div>
+
+            {/* Quick Links */}
             <div>
-              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/admin" className="hover:text-white transition-colors">Admin Dashboard</Link></li>
-                <li><Link href="/teacher" className="hover:text-white transition-colors">Teacher Portal</Link></li>
-                <li><Link href="/student" className="hover:text-white transition-colors">Student Portal</Link></li>
-                <li><Link href="/parents" className="hover:text-white transition-colors">Parent Portal</Link></li>
+              <h4 className="text-lg font-bold mb-6 text-blue-400">Quick Access</h4>
+              <ul className="space-y-3">
+                <li>
+                  <Link href="/admin" className="text-gray-300 hover:text-blue-400 transition-all duration-300 flex items-center group">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></span>
+                    Admin Dashboard
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/teacher" className="text-gray-300 hover:text-green-400 transition-all duration-300 flex items-center group">
+                    <span className="w-2 h-2 bg-green-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></span>
+                    Teacher Portal
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/student" className="text-gray-300 hover:text-purple-400 transition-all duration-300 flex items-center group">
+                    <span className="w-2 h-2 bg-purple-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></span>
+                    Student Portal
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/parents" className="text-gray-300 hover:text-pink-400 transition-all duration-300 flex items-center group">
+                    <span className="w-2 h-2 bg-pink-500 rounded-full mr-3 group-hover:scale-125 transition-transform"></span>
+                    Parent Portal
+                  </Link>
+                </li>
               </ul>
             </div>
+
+            {/* Features */}
             <div>
-              <h4 className="text-lg font-semibold mb-4">Features</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>Student Management</li>
-                <li>Teacher Portal</li>
-                <li>Attendance Tracking</li>
-                <li>Exam Management</li>
+              <h4 className="text-lg font-bold mb-6 text-purple-400">Core Features</h4>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-center">
+                  <span className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-3"></span>
+                  Student Management
+                </li>
+                <li className="flex items-center">
+                  <span className="w-2 h-2 bg-gradient-to-r from-green-500 to-blue-500 rounded-full mr-3"></span>
+                  Attendance Tracking
+                </li>
+                <li className="flex items-center">
+                  <span className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mr-3"></span>
+                  Exam Management
+                </li>
+                <li className="flex items-center">
+                  <span className="w-2 h-2 bg-gradient-to-r from-yellow-500 to-red-500 rounded-full mr-3"></span>
+                  Communication Hub
+                </li>
               </ul>
             </div>
+
+            {/* Contact & Social */}
             <div>
-              <h4 className="text-lg font-semibold mb-4">Contact</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>support@schoolhub.com</li>
-                <li>+1 (555) 123-4567</li>
-                <li>123 Education St, Learning City</li>
-              </ul>
+              <h4 className="text-lg font-bold mb-6 text-green-400">Connect With Developer</h4>
+              <div className="space-y-4">
+                <Link 
+                  href="https://arpon007.me/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center text-gray-300 hover:text-blue-400 transition-all duration-300 group"
+                >
+                  <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                    <span className="text-sm font-bold">🌐</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold">Portfolio</div>
+                    <div className="text-xs text-gray-400">arpon007.me</div>
+                  </div>
+                </Link>
+
+                <Link 
+                  href="https://github.com/arpondark" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center text-gray-300 hover:text-gray-200 transition-all duration-300 group"
+                >
+                  <div className="w-10 h-10 bg-gradient-to-r from-gray-700 to-gray-900 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                    <span className="text-sm font-bold">⚡</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold">GitHub</div>
+                    <div className="text-xs text-gray-400">arpondark</div>
+                  </div>
+                </Link>
+
+                <Link 
+                  href="https://linkedin.com/in/md-shazan-mahmud-arpon" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center text-gray-300 hover:text-blue-400 transition-all duration-300 group"
+                >
+                  <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                    <span className="text-sm font-bold">💼</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold">LinkedIn</div>
+                    <div className="text-xs text-gray-400">Professional Profile</div>
+                  </div>
+                </Link>
+
+                <Link 
+                  href="mailto:arponarpon007@gmail.com"
+                  className="flex items-center text-gray-300 hover:text-red-400 transition-all duration-300 group"
+                >
+                  <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-pink-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                    <span className="text-sm font-bold">📧</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold">Email</div>
+                    <div className="text-xs text-gray-400">Get in touch</div>
+                  </div>
+                </Link>
+
+                <Link 
+                  href="tel:+21867813388"
+                  className="flex items-center text-gray-300 hover:text-green-400 transition-all duration-300 group"
+                >
+                  <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-teal-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                    <span className="text-sm font-bold">📱</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold">Phone</div>
+                    <div className="text-xs text-gray-400">+218 678 13388</div>
+                  </div>
+                </Link>
+              </div>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 SchoolHub. All rights reserved.</p>
+
+          {/* Bottom Section */}
+          <div className="border-t border-gray-700 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+              <div className="text-center md:text-left">
+                <p className="text-gray-400">
+                  © 2025 SchoolHub. Developed with ❤️ by 
+                  <span className="text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text font-bold"> MD Shazan Mahmud Arpon</span>
+                </p>
+                <p className="text-sm text-gray-500 mt-1">
+                  All rights reserved. Empowering education through technology.
+                </p>
+              </div>
+              <div className="flex space-x-4">
+                <Link 
+                  href="https://fb.com/arpon11241" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                >
+                  <span className="text-white font-bold text-sm">f</span>
+                </Link>
+                <Link 
+                  href="https://linkedin.com/in/md-shazan-mahmud-arpon" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                >
+                  <span className="text-white font-bold text-sm">in</span>
+                </Link>
+                <Link 
+                  href="https://github.com/arpondark" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gradient-to-r from-gray-700 to-gray-800 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                >
+                  <FaGithubSquare className="text-white text-lg" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
