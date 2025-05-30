@@ -122,7 +122,7 @@ const Menu = () => {
     <div className="mt-4 text-sm">
       {menuItems.map((i) => (
         <div className="flex flex-col gap-2" key={i.title}>
-          <span className="hidden lg:block text-gray-400 font-light my-4">
+          <span className="hidden lg:block text-gray-400 dark:text-gray-500 font-light my-4 px-2">
             {i.title}
           </span>
           {i.items.map((item) => {
@@ -131,9 +131,15 @@ const Menu = () => {
                 <Link
                   href={item.href}
                   key={item.label}
-                  className="flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md hover:bg-lamaSkyLight"
+                  className="flex items-center justify-center lg:justify-start gap-4 text-gray-500 dark:text-gray-300 py-2 md:px-2 rounded-md hover:bg-lamaSkyLight dark:hover:bg-gray-800/50 transition-colors"
                 >
-                  <Image src={item.icon} alt="" width={20} height={20} />
+                  <Image
+                    src={item.icon}
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="dark:invert"
+                  />
                   <span className="hidden lg:block">{item.label}</span>
                 </Link>
               );

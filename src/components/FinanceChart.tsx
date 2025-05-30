@@ -77,10 +77,18 @@ const data = [
 
 const FinanceChart = () => {
   return (
-    <div className="bg-white rounded-xl w-full h-full p-4">
+    <div className="bg-white dark:bg-gray-800/50 dark:backdrop-blur-sm rounded-xl w-full h-full p-4 border dark:border-gray-700">
       <div className="flex justify-between items-center">
-        <h1 className="text-lg font-semibold">Finance</h1>
-        <Image src="/moreDark.png" alt="" width={20} height={20} />
+        <h1 className="text-lg font-semibold text-gray-900 dark:text-white">
+          Finance
+        </h1>
+        <Image
+          src="/moreDark.png"
+          alt=""
+          width={20}
+          height={20}
+          className="dark:invert"
+        />
       </div>
       <ResponsiveContainer width="100%" height="90%">
         <LineChart
@@ -94,16 +102,35 @@ const FinanceChart = () => {
             bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" stroke="#ddd" />
+          <CartesianGrid
+            strokeDasharray="3 3"
+            stroke="#ddd"
+            className="dark:stroke-gray-600"
+          />
           <XAxis
             dataKey="name"
             axisLine={false}
             tick={{ fill: "#d1d5db" }}
             tickLine={false}
             tickMargin={10}
+            className="dark:fill-gray-300"
           />
-          <YAxis axisLine={false} tick={{ fill: "#d1d5db" }} tickLine={false}  tickMargin={20}/>
-          <Tooltip />
+          <YAxis
+            axisLine={false}
+            tick={{ fill: "#d1d5db" }}
+            tickLine={false}
+            tickMargin={20}
+            className="dark:fill-gray-300"
+          />
+          <Tooltip
+            contentStyle={{
+              borderRadius: "10px",
+              borderColor: "lightgray",
+              backgroundColor: "white",
+            }}
+            labelStyle={{ color: "#374151" }}
+            itemStyle={{ color: "#374151" }}
+          />
           <Legend
             align="center"
             verticalAlign="top"
@@ -115,7 +142,12 @@ const FinanceChart = () => {
             stroke="#C3EBFA"
             strokeWidth={5}
           />
-          <Line type="monotone" dataKey="expense" stroke="#CFCEFF" strokeWidth={5}/>
+          <Line
+            type="monotone"
+            dataKey="expense"
+            stroke="#CFCEFF"
+            strokeWidth={5}
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>

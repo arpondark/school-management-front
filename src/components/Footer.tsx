@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-6 px-4">
+    <footer className="bg-gray-900 dark:bg-gray-950 text-white py-6 px-4 border-t dark:border-gray-700">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           {/* Developer Info */}
@@ -25,6 +25,14 @@ const Footer = () => {
               Portfolio
             </Link>
             <Link 
+              href="https://github.com/arpondark" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-white transition-colors"
+            >
+              GitHub
+            </Link>
+            <Link 
               href="https://linkedin.com/in/md-shazan-mahmud-arpon" 
               target="_blank" 
               rel="noopener noreferrer"
@@ -33,40 +41,19 @@ const Footer = () => {
               LinkedIn
             </Link>
             <Link 
-              href="https://fb.com/arpon11241" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors"
-            >
-              Facebook
-            </Link>
-            <Link 
-              href="https://github.com/arpondark" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors"
-            >
-              GitHub
-            </Link>
-            <Link 
               href="mailto:arponarpon007@gmail.com"
-              className="text-blue-400 hover:text-blue-300 transition-colors"
+              className="text-green-400 hover:text-green-300 transition-colors"
             >
-              Email
-            </Link>
-            <Link 
-              href="tel:+8801867813388"
-              className="text-blue-400 hover:text-blue-300 transition-colors"
-            >
-              +8801867813388
+              Contact
             </Link>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-800 mt-4 pt-4 text-center">
+        <div className="mt-4 pt-4 border-t border-gray-700 text-center">
           <p className="text-gray-400 text-sm">
-            © 2025 Developed by MD Shazan Mahmud Arpon. All rights reserved.
+            © 2025 School Management System. Developed with ❤️ by 
+            <span className="text-blue-400 font-semibold"> MD Shazan Mahmud Arpon</span>
           </p>
         </div>
       </div>

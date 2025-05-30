@@ -36,7 +36,7 @@ const AnnouncementListPage = () => {
   const renderRow = (item: Announcement) => (
     <tr
       key={item.id}
-      className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight"
+      className="border-b border-gray-200 dark:border-gray-700 even:bg-slate-50 dark:even:bg-gray-800 text-sm hover:bg-lamaPurpleLight dark:hover:bg-gray-700"
     >
       <td className="flex items-center gap-4 p-4">{item.title}</td>
       <td>{item.class}</td>
@@ -55,10 +55,10 @@ const AnnouncementListPage = () => {
   );
 
   return (
-    <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
+    <div className="bg-white dark:bg-gray-900 p-4 rounded-md flex-1 m-4 mt-0">
       {/* TOP */}
       <div className="flex items-center justify-between">
-        <h1 className="hidden md:block text-lg font-semibold">
+        <h1 className="hidden md:block text-lg font-semibold text-gray-900 dark:text-white">
           All Announcements
         </h1>
         <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">

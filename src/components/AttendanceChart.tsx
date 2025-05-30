@@ -42,23 +42,48 @@ const data = [
 
 const AttendanceChart = () => {
   return (
-    <div className="bg-white rounded-lg p-4 h-full">
+    <div className="bg-white dark:bg-gray-800/50 dark:backdrop-blur-sm rounded-lg p-4 h-full border dark:border-gray-700">
       <div className="flex justify-between items-center">
-        <h1 className="text-lg font-semibold">Attendance</h1>
-        <Image src="/moreDark.png" alt="" width={20} height={20} />
+        <h1 className="text-lg font-semibold text-gray-900 dark:text-white">
+          Attendance
+        </h1>
+        <Image
+          src="/moreDark.png"
+          alt=""
+          width={20}
+          height={20}
+          className="dark:invert"
+        />
       </div>
       <ResponsiveContainer width="100%" height="90%">
         <BarChart width={500} height={300} data={data} barSize={20}>
-          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#ddd" />
+          <CartesianGrid
+            strokeDasharray="3 3"
+            vertical={false}
+            stroke="#ddd"
+            className="dark:stroke-gray-600"
+          />
           <XAxis
             dataKey="name"
             axisLine={false}
             tick={{ fill: "#d1d5db" }}
             tickLine={false}
+            className="dark:fill-gray-300"
           />
-          <YAxis axisLine={false} tick={{ fill: "#d1d5db" }} tickLine={false} />
+          <YAxis
+            axisLine={false}
+            tick={{ fill: "#d1d5db" }}
+            tickLine={false}
+            className="dark:fill-gray-300"
+          />
           <Tooltip
-            contentStyle={{ borderRadius: "10px", borderColor: "lightgray" }}
+            contentStyle={{
+              borderRadius: "10px",
+              borderColor: "lightgray",
+              backgroundColor: "white",
+            }}
+            labelStyle={{ color: "#374151" }}
+            itemStyle={{ color: "#374151" }}
           />
           <Legend
             align="left"
