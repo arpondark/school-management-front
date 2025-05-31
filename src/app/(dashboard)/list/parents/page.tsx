@@ -83,7 +83,7 @@ const ParentListPage = () => {
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
             {role === "admin" && (
-              <FormModal table="teacher" type="create"/>
+              <FormModal table="parent" type="create"/>
             )}
           </div>
         </div>
