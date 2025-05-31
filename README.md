@@ -15,6 +15,7 @@ A modern, responsive school management dashboard built with Next.js 14 and TypeS
 - **Framework**: Next.js 14 (React 18)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
+- **Database**: Prisma ORM
 - **Linting**: ESLint
 - **Package Manager**: npm
 
@@ -25,6 +26,10 @@ school-front/
 ├── public/                 # Static assets
 │   ├── icons/             # UI icons (announcement, attendance, etc.)
 │   └── logo.png           # Application logo
+├── prisma/                # Database configuration
+│   ├── schema.prisma      # Database schema
+│   ├── seed.ts           # Database seeding
+│   └── migrations/       # Database migrations
 ├── src/
 │   ├── app/               # Next.js App Router
 │   │   ├── globals.css    # Global styles
@@ -42,7 +47,8 @@ school-front/
 │   │   ├── Navbar.tsx     # Top navigation bar
 │   │   └── UserCard.tsx   # User statistics cards
 │   └── lib/
-│       └── data.ts        # Data management utilities
+│       ├── data.ts        # Data management utilities
+│       └── prisma.ts      # Prisma client configuration
 ├── tailwind.config.ts     # Tailwind CSS configuration
 ├── tsconfig.json          # TypeScript configuration
 └── package.json           # Dependencies and scripts
@@ -54,6 +60,7 @@ school-front/
 
 - Node.js 18+ 
 - npm, yarn, or pnpm
+- PostgreSQL/MySQL database (or Docker for containerized setup)
 
 ### Installation
 
@@ -72,7 +79,34 @@ school-front/
    pnpm install
    ```
 
-3. **Run the development server**
+3. **Database Setup**
+   
+   **Option A: Using existing database**
+   ```bash
+   # Set up environment variables
+   cp .env.example .env
+   # Edit .env file with your database connection string
+   ```
+   
+   **Option B: Using Docker (recommended)**
+   ```bash
+   # Start database with Docker Compose
+   docker-compose up -d
+   ```
+
+4. **Initialize Prisma**
+   ```bash
+   # Generate Prisma client
+   npx prisma generate
+   
+   # Run database migrations
+   npx prisma migrate dev
+   
+   # Seed the database (optional)
+   npx prisma db seed
+   ```
+
+5. **Run the development server**
    ```bash
    npm run dev
    # or
@@ -81,46 +115,134 @@ school-front/
    pnpm dev
    ```
 
-4. **Open your browser**
+6. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000) to see the application.
 
-## 📱 Dashboard Features
+## 🗄️ Database Configuration
 
-### Admin Dashboard
-- Overview statistics for students, teachers, parents, and staff
-- User management interface
-- System-wide analytics and reporting
+### Prisma Setup
 
-### Teacher Dashboard
-- Class management
-- Student attendance tracking
-- Assignment and exam management
-- Grade book functionality
+This project uses Prisma as the ORM for database management. The database schema is defined in `prisma/schema.prisma`.
 
-### Student Dashboard
-- Personal academic information
-- Assignment submissions
-- Grade viewing
-- Schedule management
+#### Key Prisma Commands
 
-### Parent Dashboard
-- Child's academic progress
-- Communication with teachers
-- Event and announcement viewing
-- Fee payment tracking
+```bash
+# Generate Prisma client after schema changes
+npx prisma generate
 
-## 🎨 Customization
+# Create and apply new migrations
+npx prisma migrate dev --name your_migration_name
 
-### Themes and Colors
-The application uses custom color schemes defined in `tailwind.config.ts`:
-- **lamaSky**: Light blue theme
-- **lamaPurple**: Purple theme  
-- **lamaYellow**: Yellow theme
+# Reset database (development only)
+npx prisma migrate reset
 
-### Adding New Components
-1. Create new component files in `src/components/`
-2. Follow the existing TypeScript and styling patterns
-3. Import and use in your pages as needed
+# Open Prisma Studio (database GUI)
+npx prisma studio
+
+# Seed the database
+npx prisma db seed
+```
+
+#### Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
+
+```env
+# Database
+DATABASE_URL="postgresql://username:password@localhost:5432/school_management"
+
+# Next.js
+NEXTAUTH_SECRET="your-secret-key"
+NEXTAUTH_URL="http://localhost:3000"
+```
+
+## 🐳 Docker Configuration
+
+### Docker Compose Setup
+
+Create a `docker-compose.yml` file for easy database setup:
+
+```yaml
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    container_name: school_db
+    restart: always
+    environment:
+      POSTGRES_USER: school_user
+      POSTGRES_PASSWORD: school_password
+      POSTGRES_DB: school_management
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+```
+
+### Docker Commands
+
+```bash
+# Start database container
+docker-compose up -d
+
+# Stop database container
+docker-compose down
+
+# View container logs
+docker-compose logs postgres
+
+# Access database shell
+docker exec -it school_db psql -U school_user -d school_management
+```
+
+### Full Application Dockerization
+
+Create a `Dockerfile` for the Next.js application:
+
+```dockerfile
+FROM node:18-alpine AS base
+
+# Install dependencies only when needed
+FROM base AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+COPY package.json package-lock.json* ./
+RUN npm ci
+
+# Rebuild the source code only when needed
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+RUN npx prisma generate
+RUN npm run build
+
+# Production image, copy all the files and run next
+FROM base AS runner
+WORKDIR /app
+
+ENV NODE_ENV production
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE 3000
+
+ENV PORT 3000
+
+CMD ["node", "server.js"]
+```
 
 ## 📜 Available Scripts
 
@@ -128,6 +250,9 @@ The application uses custom color schemes defined in `tailwind.config.ts`:
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
+- `npx prisma studio` - Open Prisma Studio
+- `npx prisma migrate dev` - Run database migrations
+- `npx prisma generate` - Generate Prisma client
 
 ## 🔧 Configuration
 
